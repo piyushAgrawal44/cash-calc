@@ -1,0 +1,13 @@
+.nav-link{
+    color: white !important;
+}
+.nav-link:hover{
+    text-decoration: underline;
+}
+.navbar-toggler{
+    padding: 4px 6px;
+}
+.bi-list{
+    color: white;
+    font-size: 1.25rem;
+}

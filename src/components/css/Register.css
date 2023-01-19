@@ -1,0 +1,13 @@
+
+.charts{
+    height: 100%;
+    background-color: white;
+    padding: 12px 12px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px grey;
+}
+.registerCard{
+    max-width: 500px;
+    margin: 20px auto;
+    
+}
