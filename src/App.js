@@ -23,7 +23,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   return (
     <>
-      <Router>
+      <Router basename='/cash-calc'>
         <LoadingBar
         color='#f11946'
         height={3}
