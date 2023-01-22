@@ -34,7 +34,7 @@ function App() {
         <br /><br />
 
         <Routes>
-          <Route exact path='/' element={<Home setAppAlert={setAppAlert} setProgress={setProgress}/>} />
+          <Route exact path='/cash-clac' element={<Home setAppAlert={setAppAlert} setProgress={setProgress}/>} />
           <Route exact path='/transactions' element={<Transaction setAppAlert={setAppAlert} setProgress={setProgress}/>} />
           <Route exact path='/profile' element={<Profile setAppAlert={setAppAlert} setProgress={setProgress}/>} />
 
