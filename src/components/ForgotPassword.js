@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 function ForgotPassword(props) {
+    let history=useHistory();
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
@@ -46,7 +48,8 @@ function ForgotPassword(props) {
                     message: "",
                     display: "none"
                 });
-                window.location.href = "/cash-calc/verifytoken";
+                // window.location.href = "/cash-calc/verifytoken";
+                history.push("/verifytoken");
             }, 3000);
             
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import './css/Register.css'
+import {useHistory} from 'react-router-dom';
 
 function Register(props) {
-
+    let history=useHistory();
     const backendURL = "https://cash-calc-backend.vercel.app";
     
    
@@ -68,7 +69,8 @@ function Register(props) {
             }
     
             localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
-            window.location.href="/cash-calc";
+            // window.location.href="/cash-calc";
+            history.push("/");
         } catch (error) {
             props.setAppAlert({
                 bg: "danger",

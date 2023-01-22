@@ -1,6 +1,8 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 
 function VerifyToken(props) {
+    let history=useHistory();
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
@@ -71,7 +73,8 @@ function VerifyToken(props) {
                     message: "",
                     display: "none"
                 });
-                window.location.href = "/cash-calc/login";
+                // window.location.href = "/cash-calc/login";
+                history.push("/login");
             }, 2000);
             
 

@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import './css/Home.css';
 import Table from './Table';
 
+import {useHistory} from 'react-router-dom';
 export const Home = (props) => {
+  let history=useHistory();
   const backendURL = "https://cash-calc-backend.vercel.app";
 
   if (!localStorage.getItem('cash-calc-1@#1-auth-token')) {
-    window.location.href = "/cash-calc/login";
+    history.push("/login");
+    // window.location.href = "/cash-calc/login";
   }
 
 

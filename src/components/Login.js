@@ -1,8 +1,10 @@
 import React from 'react'
 import './css/Login.css';
 import { Link } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 function Login(props) {
+    let history=useHistory();
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
@@ -42,7 +44,8 @@ function Login(props) {
                 return ;
             }
             localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
-            window.location.href="/cash-calc/";
+            history.push("/");
+            // window.location.href="/cash-calc/";
 
         } catch (error) {
             props.setAppAlert({
