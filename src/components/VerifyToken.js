@@ -1,8 +1,8 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function VerifyToken(props) {
-    let history=useHistory();
+    let navigate=useNavigate();
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
@@ -74,7 +74,7 @@ function VerifyToken(props) {
                     display: "none"
                 });
                 // window.location.href = "/cash-calc/login";
-                history.push("/login");
+                navigate("/login");
             }, 2000);
             
 
