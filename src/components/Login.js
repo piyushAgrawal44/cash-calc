@@ -42,7 +42,7 @@ function Login(props) {
                 return ;
             }
             localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
-            window.location.href="/";
+            window.location.href="/cash-calc/";
 
         } catch (error) {
             props.setAppAlert({

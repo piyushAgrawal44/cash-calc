@@ -71,7 +71,7 @@ function VerifyToken(props) {
                     message: "",
                     display: "none"
                 });
-                window.location.href = "/login";
+                window.location.href = "/cash-calc/login";
             }, 2000);
             
 

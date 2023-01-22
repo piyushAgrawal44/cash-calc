@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 function Profile(props) {
 
     if (!localStorage.getItem('cash-calc-1@#1-auth-token')) {
-        window.location.href = "/login";
+        window.location.href = "/cash-calc/login";
     }
     const backendURL = "https://cash-calc-backend.vercel.app";
     const [userDetails, setUserDetails] = useState({name:"",email:""})

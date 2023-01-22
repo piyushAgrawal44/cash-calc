@@ -6,7 +6,7 @@ export const Home = (props) => {
   const backendURL = "https://cash-calc-backend.vercel.app";
 
   if (!localStorage.getItem('cash-calc-1@#1-auth-token')) {
-    window.location.href = "/login";
+    window.location.href = "/cash-calc/login";
   }
 
 

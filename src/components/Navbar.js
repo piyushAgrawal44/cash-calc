@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Navbar() {
     function handleLogout(){
         localStorage.removeItem("cash-calc-1@#1-auth-token");
-        window.location.href="/login"
+        window.location.href="/cash-calc/login"
     }
     return (
         <>

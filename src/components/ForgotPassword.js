@@ -46,7 +46,7 @@ function ForgotPassword(props) {
                     message: "",
                     display: "none"
                 });
-                window.location.href = "/verifytoken";
+                window.location.href = "/cash-calc/verifytoken";
             }, 3000);
             
 
