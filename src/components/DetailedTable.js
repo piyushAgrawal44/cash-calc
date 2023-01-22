@@ -20,6 +20,11 @@ export default function Table(props) {
             selector: (row) => <span className='white-space-wrap'>{row.note===""?"NA":row.note}</span>,
             sortable: true,
 
+        }, {
+            name: <h6><b>Created At</b></h6>,
+            selector: (row) => <span className='white-space-wrap'>{row.created_at===""?"NA":row.created_at}</span>,
+            sortable: true,
+
         },
 
     ]

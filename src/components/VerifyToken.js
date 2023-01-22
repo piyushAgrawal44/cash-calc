@@ -1,17 +1,13 @@
-import React from 'react'
-import './css/Register.css'
+import React from 'react';
 
-function Register(props) {
-
+function VerifyToken(props) {
     const backendURL = "https://cash-calc-backend.vercel.app";
-    
-   
     async function handleSubmit(e) {
         e.preventDefault();
-       
-        document.getElementById('registerBtn').disabled=true;
-        let name = document.getElementById("name");
+
+        document.getElementById('resetBtn').disabled = true;
         let email = document.getElementById("email");
+        let reset_token = document.getElementById("reset_token");
         let password = document.getElementById("password");
         let cpassword = document.getElementById("cpassword");
         if (cpassword.value !== password.value) {
@@ -27,27 +23,25 @@ function Register(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('registerBtn').disabled=false;
+            document.getElementById('resetBtn').disabled=false;
             return 0;
         }
-            props.setProgress(100);
 
         let data = {};
-        data["name"] = name.value;
         data["email"] = email.value;
+        data["reset_token"] = reset_token.value;
         data["password"] = password.value;
-
+        
         try {
             props.setProgress(10);
-            const response = await fetch(backendURL + "/register", {
+            const response = await fetch(backendURL + "/verifytoken", {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data) // body data type must match "Content-Type" header
             });
-            props.setProgress(50);
-
+            props.setProgress(60);
             const resultData = await response.json();
             props.setProgress(100);
             if (!resultData.success) {
@@ -63,12 +57,24 @@ function Register(props) {
                         display: "none"
                     });
                 }, 2000);
-                document.getElementById('registerBtn').disabled=false;
-                return ;
+                document.getElementById('resetBtn').disabled = false;
+                return;
             }
-    
-            localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
-            window.location.href="/";
+            props.setAppAlert({
+                bg: "success",
+                message: "Successfully password updated !",
+                display: "block"
+            });
+            setTimeout(() => {
+                props.setAppAlert({
+                    bg: "warning",
+                    message: "",
+                    display: "none"
+                });
+                window.location.href = "/login";
+            }, 2000);
+            
+
         } catch (error) {
             props.setAppAlert({
                 bg: "danger",
@@ -82,12 +88,11 @@ function Register(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('registerBtn').disabled=false;
+            document.getElementById('resetBtn').disabled = false;
             return 0;
         }
 
     }
-
     function showPassword(e) {
         let passwordInput = document.getElementById('password');
         let cPasswordInput = document.getElementById('cpassword');
@@ -100,22 +105,20 @@ function Register(props) {
             cPasswordInput.type = "password";
         }
     }
-
-    
     return (
         <>
             <div className="p-2">
-                <div className="charts loginCard bg-black text-light py-5 px-3">
-                    <h5 className="lineChartHeading text-center mb-0"><b>Register and Get Started !</b></h5>
+                <div className="charts bg-black text-light loginCard py-5 px-3">
+                    <h5 className="lineChartHeading text-center mb-0"><b>Password reset</b></h5>
                     <br />
                     <form onSubmit={handleSubmit}>
                         <div className="mb-2">
-                            <label htmlFor="name" className="form-label">Name <span className='text-danger'>*</span></label>
-                            <input required type="text" className="form-control outline-none box-shadow-none" name='name' id="name" aria-describedby="name" placeholder='Your Name (minimum 3 character)' />
-                        </div>
-                        <div className="mb-2">
                             <label htmlFor="email" className="form-label">Email <span className='text-danger'>*</span></label>
                             <input required type="email" className="form-control outline-none box-shadow-none" placeholder='Your Email' name='email' id="email" aria-describedby="email" />
+                        </div>
+                        <div className="mb-2">
+                            <label htmlFor="reset_token" className="form-label">Token <span className='text-danger'>*</span></label>
+                            <input required type="text" className="form-control outline-none box-shadow-none" placeholder='Your Token' name='reset_token' id="reset_token" aria-describedby="reset_token" />
                         </div>
                         <div className="mb-2">
                             <label htmlFor="password" className="form-label">Password <span className='text-danger'>*</span></label>
@@ -131,8 +134,10 @@ function Register(props) {
                             <input type="checkbox" onClick={showPassword} className="form-check-input box-shadow-none" id="showPassword" />
                             <label className="form-check-label" htmlFor="showPassword">Show Password</label>
                         </div>
-                        
-                        <button  type="submit" className="btn registerBtn mt-2" id='registerBtn' >Register</button>
+
+                        <div className="d-flex gap-3 align-items-center mt-3">
+                            <button type="submit" id='resetBtn' className="btn resetBtn">Reset Password</button>
+                        </div>
                     </form>
 
                 </div>
@@ -141,4 +146,4 @@ function Register(props) {
     )
 }
 
-export default Register
+export default VerifyToken

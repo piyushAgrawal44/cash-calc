@@ -98,10 +98,9 @@
 .registerBtn{
     background-color: #0086ED;
     color: white;
-    padding: 5px 0px;
+    padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    width: 80px;
 }
 .bi-coin{
     font-size: 35px;

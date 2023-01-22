@@ -1,30 +1,24 @@
 import React from 'react'
-import './css/Login.css';
 import { Link } from 'react-router-dom';
 
-function Login(props) {
+function ForgotPassword(props) {
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
-        
-        document.getElementById('addBtn').disabled=true;
+        document.getElementById('resetBtn').disabled = true;
         let email = document.getElementById("email");
-        let password = document.getElementById("password");
         let data = {};
         data["email"] = email.value;
-        data["password"] = password.value;
+        
         try {
-            props.setProgress(10);
-            const response = await fetch(backendURL + "/login", {
+            const response = await fetch(backendURL + "/resetpassword", {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data) // body data type must match "Content-Type" header
             });
-            props.setProgress(40);
             const resultData = await response.json();
-            props.setProgress(100);
             if (!resultData.success) {
                 props.setAppAlert({
                     bg: "danger",
@@ -38,11 +32,23 @@ function Login(props) {
                         display: "none"
                     });
                 }, 2000);
-                document.getElementById('addBtn').disabled=false;
-                return ;
+                document.getElementById('resetBtn').disabled = false;
+                return;
             }
-            localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
-            window.location.href="/";
+            props.setAppAlert({
+                bg: "success",
+                message: "Check you email for password reset token",
+                display: "block"
+            });
+            setTimeout(() => {
+                props.setAppAlert({
+                    bg: "warning",
+                    message: "",
+                    display: "none"
+                });
+                window.location.href = "/verifytoken";
+            }, 3000);
+            
 
         } catch (error) {
             props.setAppAlert({
@@ -57,44 +63,27 @@ function Login(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('addBtn').disabled=false;
+            document.getElementById('resetBtn').disabled = false;
             return 0;
         }
-        
-    }
 
-    function showPassword(e){
-        let passwordInput=document.getElementById('password');
-        if (e.target.checked) {
-            passwordInput.type="text";
-        } else {
-            passwordInput.type="password";
-        }
     }
     return (
         <>
             <div className="p-2">
                 <div className="charts bg-black text-light loginCard py-5 px-3">
-                    <h5 className="lineChartHeading text-center mb-0"><b>Login into Your Account</b></h5>
+                    <h5 className="lineChartHeading text-center mb-0"><b>Enter email for password reset</b></h5>
                     <br />
                     <form onSubmit={handleSubmit}>
                         <div className="mb-2">
                             <label htmlFor="email" className="form-label">Email <span className='text-danger'>*</span></label>
                             <input required type="email" className="form-control outline-none box-shadow-none" placeholder='Your Email' name='email' id="email" aria-describedby="email" />
+                        </div>
 
-                        </div>
-                        <div className="mb-2">
-                            <label htmlFor="password" className="form-label">Password <span className='text-danger'>*</span></label>
-                            <input required type="password" className="form-control outline-none box-shadow-none" placeholder='Atleast 6 digits' name='password' id="password" />
-                        </div>
-                        <div className="mb-2 form-check">
-                            <input type="checkbox" onClick={showPassword} className="form-check-input box-shadow-none" id="showPassword" />
-                            <label className="form-check-label" htmlFor="showPassword">Show Password</label>
-                        </div>
                         <div className="d-flex gap-3 align-items-center mt-3">
-                            <button type="submit" id='addBtn'  className="btn addBtn">Login</button>
+                            <button type="submit" id='resetBtn' className="btn resetBtn">Reset Password</button>
                             <span>Or</span>
-                            <Link to="/forgotpassword" className='text-light'>Forgot Password</Link>
+                            <Link to="/login" className='text-light'>Login</Link>
                         </div>
                     </form>
 
@@ -104,4 +93,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default ForgotPassword
