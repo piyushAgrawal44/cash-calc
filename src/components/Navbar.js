@@ -1,10 +1,12 @@
 import React from 'react'
 import './css/Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Navbar() {
+    let navigate=useNavigate();
     function handleLogout(){
         localStorage.removeItem("cash-calc-1@#1-auth-token");
-        window.location.href="/cash-calc/login"
+        // window.location.href="/cash-calc/login"
+        navigate('/login');
     }
     return (
         <>
