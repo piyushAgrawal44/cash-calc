@@ -45,7 +45,29 @@ function Transaction(props) {
         setTransactions(resultData.data);
     }
 
+    function convertDateFormate(dateStr){
+        let newDateFormate="";
+        console.log(dateStr)
+        for (let i = 0; i < dateStr.length; i++) {
+            const element = dateStr[i];
+            if(element !== "-"){
+                return dateStr;
+            }
+            else if(element !== "-"){
+                newDateFormate += "-";
+            }
+            else{
+                newDateFormate +=element;
+            }
+      
+        }
+        return newDateFormate===""?dateStr:newDateFormate;
+    }
+
     async function filterTransaction(start_date = null, end_date = null) {
+
+        start_date=convertDateFormate(start_date);
+        end_date=convertDateFormate(end_date);
        try {
         props.setProgress(10);
         const response = await fetch(backendURL + `/transaction/filtertransaction?start_date=${start_date}&end_date=${end_date}`, {

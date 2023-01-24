@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function ForgotPassword(props) {
     let navigate=useNavigate();
 
-    const backendURL = "https://cash-calc-backend.vercel.app";
+    // const backendURL = "https://cash-calc-backend.vercel.app";
+    const backendURL = "https://cash-calc.onrender.com"; // for nodemailer
     async function handleSubmit(e) {
         e.preventDefault();
         document.getElementById('resetBtn').disabled = true;

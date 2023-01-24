@@ -57,7 +57,6 @@ export const Home = (props) => {
     setTransactions(resultData.data);
   }
 
-
   async function handleNewTransaction() {
    
     let transactionAmount = document.getElementById('transactionAmount').value;
@@ -179,7 +178,7 @@ export const Home = (props) => {
   }
 
   useEffect(() => {
-    fetchTransactionDetails();
+     fetchTransactionDetails();
     // eslint-disable-next-line
   }, [])
 
@@ -201,9 +200,8 @@ export const Home = (props) => {
   }, [transactions])
 
 
-
   return (
-    <>
+    localStorage.getItem('cash-calc-1@#1-auth-token') && <>
       <div className="container-fluid">
 
         <button className='newTransactionBtn' data-bs-toggle="modal" data-bs-target="#exampleModal"><i className="bi bi-plus-circle me-1"></i> Transaction</button>

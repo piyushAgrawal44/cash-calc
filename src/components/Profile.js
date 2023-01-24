@@ -74,7 +74,7 @@ function Profile(props) {
                                     <div className="value">{userDetails.name}</div>
                                 </div>
                                 <div className="d-flex gap-3 mb-2">
-                                    <div className="title">Email</div>
+                                    <div className="title text-truncate">Email</div>
                                     <span>:</span>
                                     <div className="value">{userDetails.email}</div>
                                 </div>
