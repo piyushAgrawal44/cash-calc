@@ -249,7 +249,7 @@ export const Home = (props) => {
 
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div className="modal-content">
+          <div className="modal-content overflow-auto">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">New Transaction</h5>
               <button type="button" ref={ref} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -257,7 +257,7 @@ export const Home = (props) => {
             <div className={`alert alert-${alert.bg} d-${alert.display} p-2 mx-2 mb-1`} role="alert">
               {alert.message}
             </div>
-            <div className="modal-body">
+            <div className="modal-body min-height">
               <div className="mb-2">
                 <label htmlFor="transactionAmount"><b>Transaction Amt</b> <span className='text-danger'>*</span></label>
                 <input type="text" className="form-control outline-none box-shadow-none" id="transactionAmount" placeholder='Enter Amount' />

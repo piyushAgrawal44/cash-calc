@@ -3,12 +3,12 @@ import './css/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login(props) {
-    let navigate=useNavigate();
+    let navigate = useNavigate();
     const backendURL = "https://cash-calc-backend.vercel.app";
     async function handleSubmit(e) {
         e.preventDefault();
-        
-        document.getElementById('addBtn').disabled=true;
+
+        document.getElementById('addBtn').disabled = true;
         let email = document.getElementById("email");
         let password = document.getElementById("password");
         let data = {};
@@ -39,10 +39,10 @@ function Login(props) {
                         display: "none"
                     });
                 }, 2000);
-                document.getElementById('addBtn').disabled=false;
-                return ;
+                document.getElementById('addBtn').disabled = false;
+                return;
             }
-            localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
+            localStorage.setItem("cash-calc-1@#1-auth-token", resultData.token);
             navigate("/");
             // window.location.href="/cash-calc/";
 
@@ -59,18 +59,18 @@ function Login(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('addBtn').disabled=false;
+            document.getElementById('addBtn').disabled = false;
             return 0;
         }
-        
+
     }
 
-    function showPassword(e){
-        let passwordInput=document.getElementById('password');
+    function showPassword(e) {
+        let passwordInput = document.getElementById('password');
         if (e.target.checked) {
-            passwordInput.type="text";
+            passwordInput.type = "text";
         } else {
-            passwordInput.type="password";
+            passwordInput.type = "password";
         }
     }
     return (
@@ -94,12 +94,19 @@ function Login(props) {
                             <label className="form-check-label" htmlFor="showPassword">Show Password</label>
                         </div>
                         <div className="d-flex gap-3 align-items-center mt-3">
-                            <button type="submit" id='addBtn'  className="btn addBtn">Login</button>
+                            <button type="submit" id='addBtn' className="btn addBtn">Login</button>
                             <span>Or</span>
                             <Link to="/forgotpassword" className='text-light'>Forgot Password</Link>
                         </div>
                     </form>
 
+                    <br />
+                    <hr />
+                    <div className="text-center">
+                        <p>If you don't have an account then</p>
+                        <Link className="btn btn-danger " id="register_link" to="/register">Register</Link>
+
+                    </div>
                 </div>
             </div>
         </>

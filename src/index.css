@@ -8,6 +8,12 @@
     outline: none !important;
 }
 
+.overflow-auto{
+    overflow-y: auto;
+}
+.min-height{
+    min-height: 300px;
+}
 .box-shadow-none {
     box-shadow: none !important;
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import './css/Register.css'
-import { useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Register(props) {
-    let navigate=useNavigate();
+    let navigate = useNavigate();
     const backendURL = "https://cash-calc-backend.vercel.app";
-    
-   
+
+
     async function handleSubmit(e) {
         e.preventDefault();
-       
-        document.getElementById('registerBtn').disabled=true;
+
+        document.getElementById('registerBtn').disabled = true;
         let name = document.getElementById("name");
         let email = document.getElementById("email");
         let password = document.getElementById("password");
@@ -28,10 +28,10 @@ function Register(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('registerBtn').disabled=false;
+            document.getElementById('registerBtn').disabled = false;
             return 0;
         }
-            props.setProgress(100);
+        props.setProgress(100);
 
         let data = {};
         data["name"] = name.value;
@@ -64,11 +64,11 @@ function Register(props) {
                         display: "none"
                     });
                 }, 2000);
-                document.getElementById('registerBtn').disabled=false;
-                return ;
+                document.getElementById('registerBtn').disabled = false;
+                return;
             }
-    
-            localStorage.setItem("cash-calc-1@#1-auth-token",resultData.token);
+
+            localStorage.setItem("cash-calc-1@#1-auth-token", resultData.token);
             // window.location.href="/cash-calc";
             navigate("/");
         } catch (error) {
@@ -84,7 +84,7 @@ function Register(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('registerBtn').disabled=false;
+            document.getElementById('registerBtn').disabled = false;
             return 0;
         }
 
@@ -103,7 +103,7 @@ function Register(props) {
         }
     }
 
-    
+
     return (
         <>
             <div className="p-2">
@@ -133,9 +133,17 @@ function Register(props) {
                             <input type="checkbox" onClick={showPassword} className="form-check-input box-shadow-none" id="showPassword" />
                             <label className="form-check-label" htmlFor="showPassword">Show Password</label>
                         </div>
-                        
-                        <button  type="submit" className="btn registerBtn mt-2" id='registerBtn' >Register</button>
+
+                        <button type="submit" className="btn registerBtn mt-2" id='registerBtn' >Register</button>
                     </form>
+
+                    <br />
+                    <hr />
+                    <div className="text-center">
+                        <p>Already have an account then</p>
+                        <Link className="btn btn-danger " id="register_link" to="/login">Login</Link>
+
+                    </div>
 
                 </div>
             </div>

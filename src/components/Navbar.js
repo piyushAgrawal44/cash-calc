@@ -42,7 +42,7 @@ function Navbar() {
                             }
                             {
                                 localStorage.getItem('cash-calc-1@#1-auth-token') && <li className="nav-item">
-                                    <p className="nav-link cursor-pointer mb-0" id="logout_link" onClick={handleLogout}><i className="bi bi-door-open"></i> Logout</p>
+                                    <p className="nav-link cursor-pointer mb-0 text-danger" id="logout_link" onClick={handleLogout}><i className="bi bi-door-open"></i> Logout</p>
                                 </li>
                             }
                         </ul>
