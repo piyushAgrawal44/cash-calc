@@ -7,11 +7,6 @@ export const Home = (props) => {
   let navigate=useNavigate();
   const backendURL = "https://cash-calc-backend.vercel.app";
 
-  if (!localStorage.getItem('cash-calc-1@#1-auth-token')) {
-    navigate("/login");
-    // window.location.href = "/cash-calc/login";
-  }
-
 
   const ref = useRef(null);
 
@@ -25,6 +20,11 @@ export const Home = (props) => {
   const [transactions, setTransactions] = useState([]);
 
   async function fetchTransactionDetails() {
+    if (!localStorage.getItem('cash-calc-1@#1-auth-token')) {
+      navigate("/login");
+      // window.location.href = "/cash-calc/login";
+      return ;
+    }
     props.setProgress(10);
     const response = await fetch(backendURL + "/transaction/todaytransaction", {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -51,7 +51,6 @@ export const Home = (props) => {
           display: "none"
         });
       }, 2000);
-      document.getElementById('addBtn').disabled = false;
       return;
     }
     setTransactions(resultData.data);
@@ -177,10 +176,11 @@ export const Home = (props) => {
     return inputVal && inputVal !== "" && inputVal !== 0;
   }
 
+  
   useEffect(() => {
-     fetchTransactionDetails();
-    // eslint-disable-next-line
-  }, [])
+    fetchTransactionDetails();
+   // eslint-disable-next-line
+ }, [])
 
   useEffect(() => {
     let CreditAmt = 0;

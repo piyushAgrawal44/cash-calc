@@ -66,15 +66,15 @@ function Profile(props) {
                 <div className="row">
                     <div className="col-12">
                         <div className="card" >
-                            <div className="card-body">
+                            <div className="card-body overflow-x-auto">
                                 <h5 className='mb-3'>Your Profile: </h5>
                                 <div className="d-flex gap-3 mb-2">
                                     <div className="title">Name</div>
                                     <span>:</span>
                                     <div className="value">{userDetails.name}</div>
                                 </div>
-                                <div className="d-flex gap-3 mb-2">
-                                    <div className="title text-truncate">Email</div>
+                                <div className="d-flex gap-3 mb-2 ">
+                                    <div className="title">Email</div>
                                     <span>:</span>
                                     <div className="value">{userDetails.email}</div>
                                 </div>

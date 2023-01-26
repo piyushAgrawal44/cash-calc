@@ -11,6 +11,10 @@
 .overflow-auto{
     overflow-y: auto;
 }
+.overflow-x-auto{
+    max-width: 100%;
+    overflow-x: auto;
+  }
 .min-height{
     min-height: 300px;
 }
