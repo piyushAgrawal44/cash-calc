@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cash-calc/static/css/main.269eaa0c.css",
-    "main.js": "/cash-calc/static/js/main.55f52217.js",
+    "main.css": "/cash-calc/static/css/main.5f3b4453.css",
+    "main.js": "/cash-calc/static/js/main.caf8b098.js",
     "index.html": "/cash-calc/index.html",
-    "main.269eaa0c.css.map": "/cash-calc/static/css/main.269eaa0c.css.map",
-    "main.55f52217.js.map": "/cash-calc/static/js/main.55f52217.js.map"
+    "main.5f3b4453.css.map": "/cash-calc/static/css/main.5f3b4453.css.map",
+    "main.caf8b098.js.map": "/cash-calc/static/js/main.caf8b098.js.map"
   },
   "entrypoints": [
-    "static/css/main.269eaa0c.css",
-    "static/js/main.55f52217.js"
+    "static/css/main.5f3b4453.css",
+    "static/js/main.caf8b098.js"
   ]
 }
