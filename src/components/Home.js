@@ -66,13 +66,13 @@ export const Home = (props) => {
     }
 
     if (transactionType === null) {
-      setAlert({
+     setAlert({
         bg: "warning",
         message: "Please fill required details !",
         display: "block"
       });
       setTimeout(() => {
-        setAlert({
+       setAlert({
           bg: "warning",
           message: "",
           display: "none"
@@ -104,13 +104,13 @@ export const Home = (props) => {
         props.setProgress(100);
 
         if (!resultData.success) {
-          setAlert({
+         setAlert({
             bg: "danger",
             message: resultData.message,
             display: "block"
           });
           setTimeout(() => {
-            setAlert({
+           setAlert({
               bg: "warning",
               message: "",
               display: "none"
@@ -204,11 +204,11 @@ export const Home = (props) => {
     localStorage.getItem('cash-calc-1@#1-auth-token') && <>
       <div className="container-fluid">
 
-        <button className='newTransactionBtn' data-bs-toggle="modal" data-bs-target="#exampleModal"><i className="bi bi-plus-circle me-1"></i> Transaction</button>
+        <button className='newTransactionBtn' data-bs-toggle="modal" data-bs-target="#newTranctionModal"><b><i className="bi bi-plus-lg me-1"></i> Transaction</b></button>
 
         <div className="transactionChart row ">
           <div className="col-12">
-            <h3 className="text-center mb-3"><b>Today's Transactions :</b></h3>
+            <h3 className="text-center mb-4"><b>Today's Transactions :</b></h3>
           </div>
           <div className="col-12 col-sm-5 col-md-4 col-lg-3 mb-4">
             <div className="charts bg-black text-light">
@@ -247,15 +247,17 @@ export const Home = (props) => {
 
       </div>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="newTranctionModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content overflow-auto">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New Transaction</h5>
+              <h5 className="modal-title" >New Transaction</h5>
               <button type="button" ref={ref} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className={`alert alert-${alert.bg} d-${alert.display} p-2 mx-2 mb-1`} role="alert">
+            <div className="position-relative">
+            <div className={`alert alert-${alert.bg} d-${alert.display} p-2 absolute-top z-index-100`} role="alert">
               {alert.message}
+            </div>
             </div>
             <div className="modal-body min-height">
               <div className="mb-2">

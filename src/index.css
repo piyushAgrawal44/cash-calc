@@ -72,3 +72,15 @@ body {
     border: none;
     border-radius: 5px;
 }
+.z-index-100{
+    z-index: 10;
+}
+.position-relative{
+    position: relative;
+}
+.absolute-top{
+    position: absolute;
+    margin-top: 0px;
+    width: 96%;
+    left: 2%;
+}

@@ -186,7 +186,7 @@ function Transaction(props) {
                         <input type="date" className='form-control' name='end_date' id='end_date' />
                     </div>
                     <div className="col-12 text-center">
-                        <button className='btn registerBtn box-shadow-none text-light' id='filterBtn' onClick={handleApplyFilter}>Apply Filter</button>
+                        <button className='btn registerBtn box-shadow-none text-light' id='filterBtn' onClick={handleApplyFilter}><b>Apply Filter</b></button>
                     </div>
                 </div>
                 <div className="transactionChart row">
