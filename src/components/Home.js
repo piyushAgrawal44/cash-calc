@@ -57,7 +57,8 @@ export const Home = (props) => {
   }
 
   async function handleNewTransaction() {
-   
+    document.getElementById('addBtn').disabled=true;
+    console.log(document.getElementById('addBtn'));
     let transactionAmount = document.getElementById('transactionAmount').value;
     let transactionType = document.getElementById('typeCredit').checked ? "Credit" : null;
     
@@ -78,11 +79,12 @@ export const Home = (props) => {
           display: "none"
         });
       }, 2000);
+      document.getElementById('addBtn').disabled=false;
       return ;
     }
     
     let transactionNote = document.getElementById('transactionNote').value;
-    if (valididateInputVal(transactionAmount) && valididateInputVal(transactionType)) {
+    if (valididateInputVal(transactionAmount) && transactionAmount>0 && valididateInputVal(transactionType)) {
 
       let data = {};
       data["amount"] = transactionAmount;
@@ -123,6 +125,7 @@ export const Home = (props) => {
         document.getElementsByName('transactionType')[0].checked = false;
         document.getElementsByName('transactionType')[1].checked = false;
         document.getElementById('transactionNote').value = "";
+        document.getElementById('addBtn').disabled=false;
         setAlert({
           bg: "success",
           message: "Successfully saved !",
@@ -156,6 +159,8 @@ export const Home = (props) => {
      
     }
     else {
+      document.getElementById('addBtn').disabled=false;
+
       setAlert({
         bg: "warning",
         message: "Please fill required details !",
@@ -262,7 +267,7 @@ export const Home = (props) => {
             <div className="modal-body min-height">
               <div className="mb-2">
                 <label htmlFor="transactionAmount"><b>Transaction Amt</b> <span className='text-danger'>*</span></label>
-                <input type="text" className="form-control outline-none box-shadow-none" id="transactionAmount" placeholder='Enter Amount' />
+                <input type="text" className="form-control outline-none box-shadow-none" id="transactionAmount" placeholder='Enter Amount (must be greater than 0)' />
               </div>
               <div className="mb-2">
                 <label htmlFor="transactionType"><b>Transaction Type</b> <span className='text-danger'>*</span></label>
@@ -289,7 +294,7 @@ export const Home = (props) => {
             </div>
             <div className="modal-footer">
               <button type="button" className="closeBtn" data-bs-dismiss="modal">Close</button>
-              <button type="button" onClick={handleNewTransaction} id="addBtn" className="addBtn">Add</button>
+              <button type="button" onClick={handleNewTransaction} id="addBtn" className="btn addBtn">Add</button>
             </div>
           </div>
         </div>
