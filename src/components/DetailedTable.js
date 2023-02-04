@@ -142,7 +142,7 @@ export default function Table(props) {
                 onSelectedRowsChange={handleSelect}
             />
 
-            <div className={`fixed-bottom mb-2 mx-2 rounded-3 d-${displayBtn} justify-content-center gap-3`} id='deleteBtnDiv'>
+            <div className={`fixed-top mt-5 mx-2 rounded-3 d-${displayBtn} justify-content-center gap-3`} id='deleteBtnDiv'>
                 <button className='btn btn-danger btn-sm rounded-5 box-shadow-none' id='deleteBtn' data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Selected Row</button>
             </div>
 
