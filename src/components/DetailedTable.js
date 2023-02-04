@@ -3,8 +3,7 @@ import { useRef } from 'react';
 // import '../css/Table.css';
 import DataTable from 'react-data-table-component';
 export default function Table(props) {
-    // const backendURL = "https://cash-calc-backend.vercel.app";
-    const backendURL = "http://localhost:8000";
+    const backendURL = "https://cash-calc-backend.vercel.app";
 
     const colums = [
         {
