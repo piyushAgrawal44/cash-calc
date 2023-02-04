@@ -141,9 +141,10 @@ export const Home = (props) => {
         fetchTransactionDetails();
 
       } catch (error) {
+        console.log(error.message);
         setAlert({
           bg: "danger",
-          message: error.message,
+          message: "Please try agian later",
           display: "block"
         });
         setTimeout(() => {

@@ -3,7 +3,7 @@ import DetailedTable from './DetailedTable';
 import './css/Transaction.css'
 
 function Transaction(props) {
-   
+
     const backendURL = "https://cash-calc-backend.vercel.app";
 
 
@@ -12,24 +12,44 @@ function Transaction(props) {
     const [transactions, setTransactions] = useState([]);
 
     async function fetchTransactionDetails() {
-        props.setProgress(10);
-        document.getElementById("start_date").value = "";
-        document.getElementById("end_date").value = "";
-        const response = await fetch(backendURL + "/transaction/filtertransaction", {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                'Content-Type': 'application/json',
-                'user-auth-token': localStorage.getItem('cash-calc-1@#1-auth-token')
-            },
+        try {
+            props.setProgress(10);
+            document.getElementById("start_date").value = "";
+            document.getElementById("end_date").value = "";
+            const response = await fetch(backendURL + "/transaction/filtertransaction", {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-auth-token': localStorage.getItem('cash-calc-1@#1-auth-token')
+                },
 
-        });
-        props.setProgress(70);
-        const resultData = await response.json();
-        props.setProgress(100);
-        if (!resultData.success) {
+            });
+            props.setProgress(70);
+            const resultData = await response.json();
+            props.setProgress(100);
+            if (!resultData.success) {
+                props.setAppAlert({
+                    bg: "danger",
+                    message: resultData.message,
+                    display: "block"
+                });
+                setTimeout(() => {
+                    props.setAppAlert({
+                        bg: "warning",
+                        message: "",
+                        display: "none"
+                    });
+                }, 2000);
+                document.getElementById('filterBtn').disabled = false;
+                return;
+            }
+            setTransactions(resultData.data);
+        } catch (error) {
+            props.setProgress(100);
+            console.log(error.message);
             props.setAppAlert({
                 bg: "danger",
-                message: resultData.message,
+                message: "Unable to fetch details ! Please try again later.",
                 display: "block"
             });
             setTimeout(() => {
@@ -39,53 +59,71 @@ function Transaction(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('filterBtn').disabled = false;
-            return;
         }
-        setTransactions(resultData.data);
     }
 
-    function convertDateFormate(dateStr){
-        let newDateFormate="";
+    function convertDateFormate(dateStr) {
+        let newDateFormate = "";
         console.log(dateStr)
         for (let i = 0; i < dateStr.length; i++) {
             const element = dateStr[i];
-            if(element !== "-"){
+            if (element !== "-") {
                 return dateStr;
             }
-            else if(element !== "-"){
+            else if (element !== "-") {
                 newDateFormate += "-";
             }
-            else{
-                newDateFormate +=element;
+            else {
+                newDateFormate += element;
             }
-      
+
         }
-        return newDateFormate===""?dateStr:newDateFormate;
+        return newDateFormate === "" ? dateStr : newDateFormate;
     }
 
     async function filterTransaction(start_date = null, end_date = null) {
 
-        start_date=convertDateFormate(start_date);
-        end_date=convertDateFormate(end_date);
-       try {
-        props.setProgress(10);
-        const response = await fetch(backendURL + `/transaction/filtertransaction?start_date=${start_date}&end_date=${end_date}`, {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                'Content-Type': 'application/json',
-                'user-auth-token': localStorage.getItem('cash-calc-1@#1-auth-token'),
-            },
+        start_date = convertDateFormate(start_date);
+        end_date = convertDateFormate(end_date);
+        try {
+            props.setProgress(10);
+            const response = await fetch(backendURL + `/transaction/filtertransaction?start_date=${start_date}&end_date=${end_date}`, {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-auth-token': localStorage.getItem('cash-calc-1@#1-auth-token'),
+                },
 
-        });
-        props.setProgress(60);
+            });
+            props.setProgress(60);
 
-        const resultData = await response.json();
-        props.setProgress(100);
-        if (!resultData.success) {
+            const resultData = await response.json();
+            props.setProgress(100);
+            if (!resultData.success) {
+                props.setAppAlert({
+                    bg: "danger",
+                    message: resultData.message,
+                    display: "block"
+                });
+                setTimeout(() => {
+                    props.setAppAlert({
+                        bg: "warning",
+                        message: "",
+                        display: "none"
+                    });
+                }, 2000);
+                document.getElementById('filterBtn').disabled = false;
+                return;
+            }
+
+            setTransactions(resultData.data);
+
+            document.getElementById('filterBtn').disabled = false;
+        } catch (error) {
+            document.getElementById('filterBtn').disabled = false;
             props.setAppAlert({
                 bg: "danger",
-                message: resultData.message,
+                message: "Internal Server Error !",
                 display: "block"
             });
             setTimeout(() => {
@@ -95,28 +133,7 @@ function Transaction(props) {
                     display: "none"
                 });
             }, 2000);
-            document.getElementById('filterBtn').disabled = false;
-            return;
         }
-
-        setTransactions(resultData.data);
-        
-        document.getElementById('filterBtn').disabled = false;
-       } catch (error) {
-        document.getElementById('filterBtn').disabled = false;
-        props.setAppAlert({
-            bg: "danger",
-            message: "Internal Server Error !",
-            display: "block"
-        });
-        setTimeout(() => {
-            props.setAppAlert({
-                bg: "warning",
-                message: "",
-                display: "none"
-            });
-        }, 2000);
-       }
     }
 
     async function handleApplyFilter() {
@@ -153,18 +170,18 @@ function Transaction(props) {
         let CreditAmt = 0;
         let DeditAmt = 0;
         transactions.forEach(element => {
-          if (element.type==="Credit" || element.type==="credit") {
-            CreditAmt += parseInt(element.amount);
-          }
-          else{
-            DeditAmt += parseInt(element.amount);
-          }
-          
+            if (element.type === "Credit" || element.type === "credit") {
+                CreditAmt += parseInt(element.amount);
+            }
+            else {
+                DeditAmt += parseInt(element.amount);
+            }
+
         });
         setTodayTotalCreditAmt(CreditAmt);
         setTodayTotalDebitAmt(DeditAmt);
         // eslint-disable-next-line
-      }, [transactions])
+    }, [transactions])
     return (
         <>
 
@@ -220,7 +237,7 @@ function Transaction(props) {
                         <div className="charts">
                             <h5 className="lineChartHeading"><b>Transactions:</b></h5>
                             <br />
-                            <DetailedTable data={transactions} />
+                            <DetailedTable data={transactions} setAppAlert={props.setAppAlert} setProgress={props.setProgress} fetchTransactionDetails={fetchTransactionDetails} />
                         </div>
                     </div>
                 </div>
