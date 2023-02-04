@@ -143,7 +143,7 @@ export default function Table(props) {
             />
 
             <div className={`fixed-top mt-5 mx-2 rounded-3 d-${displayBtn} justify-content-center gap-3`} id='deleteBtnDiv'>
-                <button className='btn btn-danger btn-sm rounded-5 box-shadow-none' id='deleteBtn' data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Selected Row</button>
+                <button className='btn btn-warning btn-sm rounded-5 box-shadow-none' id='deleteBtn' data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Selected Row</button>
             </div>
 
             <div className="modal fade" id="deleteModal" tabIndex="-1" aria-hidden="true">
