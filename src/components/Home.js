@@ -267,28 +267,28 @@ export const Home = (props) => {
             </div>
             <div className="modal-body min-height">
               <div className="mb-2">
-                <label htmlFor="transactionAmount"><b>Transaction Amt</b> <span className='text-danger'>*</span></label>
-                <input type="text" className="form-control outline-none box-shadow-none" id="transactionAmount" placeholder='Enter Amount (must be greater than 0)' />
+                <label htmlFor="transactionAmount"><b>Enter Amount</b> <span className='text-danger'>*</span></label>
+                <input type="number" className="form-control outline-none box-shadow-none" min="0" step={0.01} id="transactionAmount" placeholder='Enter Amount' />
               </div>
               <div className="mb-2">
-                <label htmlFor="transactionType"><b>Transaction Type</b> <span className='text-danger'>*</span></label>
+                <label htmlFor="transactionType"><b>Type</b> <span className='text-danger'>*</span></label>
                 <div>
                   <div className="form-check form-check-inline">
                     <input className="form-check-input box-shadow-none" type="radio" name="transactionType" id="typeCredit" />
                     <label className="form-check-label" htmlFor="typeCredit">
-                      Credit
+                      Credit (Aaya)
                     </label>
                   </div>
                   <div className="form-check form-check-inline">
                     <input className="form-check-input box-shadow-none" type="radio" name="transactionType" id="typeDebit" />
                     <label className="form-check-label" htmlFor="typeDebit">
-                      Debit
+                      Debit (Gya)
                     </label>
                   </div>
                 </div>
               </div>
               <div className="">
-                <label htmlFor="transactionNote"><b>Add a Note</b> <span className='text-danger'></span></label>
+                <label htmlFor="transactionNote"><b>Add a note</b> <span className='text-danger'></span></label>
                 <textarea name="transactionNote" id="transactionNote" className='form-control outline-none box-shadow-none' rows="3" placeholder='Add a Note'></textarea>
               </div>
 

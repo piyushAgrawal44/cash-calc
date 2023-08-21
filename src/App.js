@@ -11,7 +11,7 @@ import { useState } from 'react';
 import Profile from './components/Profile';
 import ForgotPassword from './components/ForgotPassword';
 import VerifyToken from './components/VerifyToken';
-import LoadingBar from 'react-top-loading-bar'
+import LoadingBar from 'react-top-loading-bar';
 
 function App() {
   const [appAlert, setAppAlert] = useState({
